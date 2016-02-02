@@ -351,8 +351,8 @@ select @@servername, db_name(), @@SPID";
                             (new Thread(RunOne)).Start();
                         }
                     }
-                    while (waitingList.Count == 0) Thread.Sleep(1);
-                    while (runningThreads >= MaxThreads) Thread.Sleep(1);
+                    while ((!IsClosed) && (waitingList.Count == 0)) Thread.Sleep(1);
+                    while ((!IsClosed) && (runningThreads >= MaxThreads)) Thread.Sleep(1);
                 }
             })).Start();
 
